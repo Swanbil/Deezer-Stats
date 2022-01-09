@@ -1,7 +1,0 @@
-{
-    "appId": "APP_ID",
-    "redirectUri": "REDIRECT_URI",
-    "perms" : "PERMS",
-    "secretKey" : "SECRET_KEY",
-    "accessToken":"ACCESS_TOKEN"
-}

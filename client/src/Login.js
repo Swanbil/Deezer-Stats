@@ -10,10 +10,10 @@ export default class Login extends React.Component {
         
         return (
             <div>
-                <h2>
-                    LoginPage
+                <h2  className='mt-3' style={{display: "flex",justifyContent: "center",alignItems: "center"}}>
+                    Login
                 </h2>
-                <button onClick={this.test.bind(this)}>
+                <button className="btn btn-primary" onClick={this.test.bind(this)}>
                     GET
                 </button>
             </div>

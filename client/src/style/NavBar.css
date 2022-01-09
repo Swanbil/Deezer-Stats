@@ -1,8 +1,19 @@
 .link{
     text-decoration: none;
-    color:antiquewhite;
+    font-weight:600;
+    color:#70d987;
+}
+.link:hover{
+    color:#4c8f5a;
 }
 .brand{
     text-decoration: none;
     color:goldenrod;
+}
+.log{
+    font-weight:600;
+}
+.logo{
+    width:180px;
+    height:50px;
 }
