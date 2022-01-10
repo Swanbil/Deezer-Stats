@@ -1,4 +1,7 @@
 .overlay{
-    width:100%;
-    
+    background-image: url('https://i.pinimg.com/originals/61/ea/3f/61ea3f40ecc0a22394dccd7926b02f4a.jpg');
+    background-attachment: scroll;
+	background-position: bottom center;
+	background-size: cover;
+    height:85vh;
 }
