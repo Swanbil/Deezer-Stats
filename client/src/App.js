@@ -5,6 +5,7 @@ import Home from './Home';
 import Stats from './Stats';
 import Feed from './Feed';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import {
   BrowserRouter as Router,
   Routes,
@@ -23,6 +24,7 @@ function App() {
           <Route path="/stats" element={<Stats />} />
           <Route path="/feed" element={<Feed />} />
         </Routes>
+        <Footer/>
       </div>
     </Router>
   );
