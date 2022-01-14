@@ -4,6 +4,9 @@ import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import "../style/NavBar.css";
 import { FaUserCircle, FaHome, FaNewspaper } from 'react-icons/fa';
 import { IoStatsChart } from 'react-icons/io5';
+import {BsFileEarmarkMusic} from "react-icons/bs";
+import {BiUserVoice} from "react-icons/bi";
+import {MdAlbum} from "react-icons/md";
 
 export default class NaviguateBar extends React.Component {
 
@@ -19,7 +22,11 @@ export default class NaviguateBar extends React.Component {
                             <Nav className="me-auto">
                                 <Nav.Link><Link className="link" to="/"><FaHome className="mx-2" />Home</Link></Nav.Link>
                                 <Nav.Link><Link className="link" to="/feed"><FaNewspaper className="mx-2" />Feed</Link></Nav.Link>
-                                <Nav.Link><Link className="link" to="/stats"><IoStatsChart className="mx-2" />Stats</Link></Nav.Link>
+                                <NavDropdown title={<span className="link"><IoStatsChart className="mx-2" />Stats</span>} id="navbarScrollingDropdown">
+                                    <NavDropdown.Item><Link to="/stats/tracks" className="sublink"><BsFileEarmarkMusic className="mx-2"color={"#70d987"} />Tracks ranking</Link></NavDropdown.Item>
+                                    <NavDropdown.Item><Link to="/stats" className="sublink"><BiUserVoice className="mx-2" color={"#70d987"}/>Artists ranking</Link></NavDropdown.Item>
+                                    <NavDropdown.Item><Link to="/stats" className="sublink"><MdAlbum className="mx-2" color={"#70d987"}/>Albums ranking</Link></NavDropdown.Item>
+                                </NavDropdown>
                             </Nav>
                             <Nav>
                                 <Nav.Link>
