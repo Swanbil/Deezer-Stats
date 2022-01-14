@@ -1,6 +1,9 @@
 import React from 'react';
 import "./style/Home.css"
-import backImage from "./assets/LogoXL.png"
+import logoDark from "./assets/LogoBlack.png"
+import { FaNewspaper } from 'react-icons/fa';
+import {IoStatsChart } from 'react-icons/io5';
+import {Link} from 'react-router-dom';
 export default class Home extends React.Component {
     
     render() {
@@ -8,8 +11,30 @@ export default class Home extends React.Component {
         return (
             <div className='overlay'>
                 <h2 className='text-dark font-weight-bold pt-3' style={{display: "flex",justifyContent: "center",alignItems: "center"}}>
-                    Home
+                    <img className="logoDark" src={logoDark}></img>
                 </h2>
+
+                <section className="services">
+                    <div className=" mx-5">
+                        <Link className="service" to="/stats">
+                            <IoStatsChart color={"#70d987"} size={56}/>
+                            <h3 className="my-2 text-dark">Statistiques</h3>
+                            <div className="subtext text-secondary text-center">
+                                Consult your deezer's stats, who's your favorites artists of the moment?
+                            </div>
+                        </Link>
+                    </div>
+                    <div className="mx-5">
+                        <Link className="service" to="/feed">
+                            <FaNewspaper color={"#70d987"} size={56}/>
+                            <h3 className="my-2 text-dark">Feed</h3>
+                            <div className="subtext text-secondary text-center">
+                                All the music world actualities
+                            </div>
+                        </Link>
+                    </div>
+
+                </section>
             </div>
         );
     }

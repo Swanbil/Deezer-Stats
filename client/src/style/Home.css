@@ -5,3 +5,24 @@
 	background-size: cover;
     height:85vh;
 }
+.logoDark{
+    width:40%;
+}
+.services{
+    margin-top:60px;
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+}
+.service{
+    display:flex;
+    width: 300px;
+    padding:2%;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+.subtext{
+    font-style: italic;
+    font-weight:600;
+}
