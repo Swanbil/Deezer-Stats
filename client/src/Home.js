@@ -21,7 +21,7 @@ export default class Home extends React.Component {
                         <div className="subtext text-secondary text-center">
                             Consult your deezer's stats, who's your favorites artists of the moment?
                         </div>
-                        <Link to="/feed"><button className='btn my-1 text-light' style={{ backgroundColor: "#70d987" }}>Discover</button></Link>
+                        <Link to="/stats/tracks"><button className='btn my-1 text-light' style={{ backgroundColor: "#70d987" }}>Discover</button></Link>
                     </div>
                     <div className="mx-5 service">
                         <FaNewspaper color={"#70d987"} size={56} />
@@ -29,7 +29,7 @@ export default class Home extends React.Component {
                         <div className="subtext text-secondary text-center">
                             All the music world actualities, discover new musics genres and artists
                         </div>
-                        <Link to="/stats"><button className='btn my-1 text-light' style={{ backgroundColor: "#70d987" }}>Discover</button></Link>
+                        <Link to="/feed"><button className='btn my-1 text-light' style={{ backgroundColor: "#70d987" }}>Discover</button></Link>
                     </div>
 
                 </section>

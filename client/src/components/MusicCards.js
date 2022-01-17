@@ -1,27 +1,38 @@
 import React from 'react';
 import "../style/MusicCards.css";
-
+import { FaMedal, FaTrophy } from "react-icons/fa";
+import {MdAlbum} from "react-icons/md";
 export default class MusicCards extends React.Component {
     render() {
-
+        var icone = "";
+        if (this.props.rank === 0) {
+            icone = <FaTrophy style={{ color: "#fde400" }}  />
+        }
+        else if (this.props.rank === 1) {
+            icone = <FaMedal style={{ color: "#c4c4c4" }}  />
+        }
         return (
-            <div>
-                <div class="card flex-row flex-wrap mt-3" style={{width: "800px"}}>
-                    <div class="card-header border-0">
-                        <img src="https://cdns-images.dzcdn.net/images/cover/ec26ae31bde4eebd58f1c8cd0f846fa4/500x500.jpg" width="200px" alt="" />
+            <div className='row '>
+                <div className ="card mb-3" style={{maxWidth: "640px"}} id="card">
+                    <div className ="row no-gutters">
+                        <div className ="col-md-4 text-align-center bg-light">
+                            <img src={this.props.track.album.cover_xl} className ="card-img" id="img"/>
+                        </div>
+                        <div className ="col-md-8 bg-light" id="cardBody">
+                            <div className ="card-body">
+                                <h5 className ="card-title">{this.props.track.title}<span className='mx-3'>{icone}</span></h5>
+                                <h5 className="card-subtitle">{this.props.track.artist.name}</h5>
+                                <p className ="card-text mt-2"><MdAlbum className='mx-1'/>{this.props.track.album.title}</p>
+                            </div>
+                            
+                        </div>
+                        <div className='card-footer'>{this.props.rank + 1}</div>
                     </div>
-                    <div class="card-body text-center px-2">
-                        <h4 class="card-title text-light">Title</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Description</p>
-                        
-                    </div>
-                    <div class="w-100"></div>
-                    <div class="card-footer w-100 text-muted">
-                        FOOTER
-                    </div>
-                </div>
+                </div>  
+               
             </div>
+
+
         );
     }
 }
