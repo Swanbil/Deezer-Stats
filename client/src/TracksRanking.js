@@ -3,7 +3,7 @@ import { BsFileEarmarkMusic } from "react-icons/bs";
 import MusicCard from "./components/MusicCards"
 import "./style/TracksRanking.css";
 import axios from 'axios';
-export default class Stats extends React.Component {
+export default class TracksRanking extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +17,6 @@ export default class Stats extends React.Component {
         console.log(this.state.favSongs)
     }
     render() {
-        
         return (
             <div>
                 <h2 className='mt-3' style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -26,12 +25,11 @@ export default class Stats extends React.Component {
                 </h2>
 
                 <div className="tracks mt-2">
-                        {this.state.favSongs.map((value, idx) => {
-                            return <MusicCard track={value} rank={idx} key={idx} />
+                    {this.state.favSongs.map((value, idx) => {
+                        return <MusicCard track={value} rank={idx} key={idx} />
 
-                        })}
+                    })}
                 </div>
-
             </div>
         );
     }
