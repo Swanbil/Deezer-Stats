@@ -1,7 +1,7 @@
 {
-    "appId": "APP_ID",
-    "redirectUri": "REDIRECT_URI",
-    "perms" : "PERMS",
-    "secretKey" : "SECRET_KEY",
-    "accessToken":"ACCESS_TOKEN"
+  "appId": "521902",
+  "redirectUri": "http://localhost:8000/getCode",
+  "perms": "basic_access,email,offline_access,listening_history",
+  "secretKey": "e643e7a219f68c575e8f38370d493b27",
+  "accessToken": "frMQjZ7ja6mBsk8wTj1WBnIqg4RfqjVyPlgMPziWMMo6zmwDUy"
 }

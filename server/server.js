@@ -2,8 +2,14 @@ const express = require('express')
 const app = express();
 const axios = require('axios');
 var cors = require('cors');
-const fs = require('fs');
+const session = require('express-session');
+const jwt = require('jsonwebtoken');
 
+app.use(session({
+  secret: "sshshhshs",
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(cors())
 const port = process.env.PORT || 8000
 
@@ -14,7 +20,7 @@ const REDIRECT_URI = datasConfig.redirectUri
 const PERMS = datasConfig.perms;
 const SECRET_KEY = datasConfig.secretKey;
 var code = "";
-var accessToken = datasConfig.accessToken;
+var accessToken = "";
 const baseUri = "https://api.deezer.com/";
 var history = [];
 
@@ -28,25 +34,36 @@ app.get('/login', async (req, res) => {
   res.send(url);
 })
 
+app.get('/logout', async (req, res) => {
+  req.session.destroy();
+  res.send("http://localhost:3000");
+})
+
+app.get('/getToken', (req,res) => {
+  if(req.session.tokenSession){
+    res.json({ 
+      token: req.session.tokenSession
+    })
+  }
+  else{
+    res.json({
+      message: 'not connected'
+    })
+  }
+  return
+})
 app.get('/getCode', async (req, res) => {
   code = req.query.code;
   const response = await axios.get('https://connect.deezer.com/oauth/access_token.php?app_id=' + APP_ID + '&secret=' + SECRET_KEY + '&code=' + code);
-  accessToken = response.data.split('=')[1].split('&')[0];
-  datasConfig.accessToken = accessToken;
-
-  fs.writeFile('./config.json', JSON.stringify(datasConfig, null, 2), err => {
-    if (err) {
-      console.error(err)
-      return
-    }
-    console.log("New access Token = ", accessToken)
-  })
-  res.redirect('http://localhost:3000/')
+  req.session.accessToken = response.data.split('=')[1].split('&')[0];
+  accessToken = req.session.accessToken;
+  req.session.tokenSession = jwt.sign({ log: true},'RANDOM_TOKEN_SECRET',{ expiresIn: '24h' });
+  res.redirect('http://localhost:3000');
 });
 
 app.get('/user/history', async (req, res) => {
   try {
-    const response = await axios.get(baseUri + "user/me/history?access_token=" + accessToken);
+    const response = await axios.get(baseUri + "user/me/history?access_token=" + req.session.accessToken);
     history = response.data.data;
     const numberListeningSongs = getListenedMusic(history);
     res.json(numberListeningSongs);
@@ -58,7 +75,7 @@ app.get('/user/history', async (req, res) => {
 
 app.get('/user/favoriteSongs', async (req, res) => {
   try {
-    const response = await axios.get(baseUri + "user/me/charts/tracks?access_token=" + accessToken);
+    const response = await axios.get(baseUri + "user/me/charts/tracks?access_token=" + req.session.accessToken);
     var favoriteSongs = response.data.data;
     res.json(favoriteSongs);
   }
@@ -69,7 +86,7 @@ app.get('/user/favoriteSongs', async (req, res) => {
 
 app.get('/user/favoriteArtists', async (req, res) => {
   try {
-    const response = await axios.get(baseUri + "user/me/charts/artists?access_token=" + accessToken);
+    const response = await axios.get(baseUri + "user/me/charts/artists?access_token=" + req.session.accessToken);
     var favoriteArtists = response.data.data;
     res.json(favoriteArtists);
   }
@@ -79,7 +96,7 @@ app.get('/user/favoriteArtists', async (req, res) => {
 })
 app.get('/user/favoriteAlbums', async (req, res) => {
   try {
-    const response = await axios.get(baseUri + "user/me/charts/albums?access_token=" + accessToken);
+    const response = await axios.get(baseUri + "user/me/charts/albums?access_token=" + req.session.accessToken);
     var favoriteAlbums = response.data.data;
     res.json(favoriteAlbums);
   }
@@ -91,7 +108,7 @@ app.get('/user/favoriteAlbums', async (req, res) => {
 app.get('/artist/:idArtist/topTracks', async (req, res) => {
   const idArtist = req.params.idArtist;
   try {
-    const response = await axios.get(baseUri + "artist/" + idArtist + "/top?access_token=" + accessToken);
+    const response = await axios.get(baseUri + "artist/" + idArtist + "/top?access_token=" + req.session.accessToken);
     var topTracks = response.data.data;
     res.json(topTracks);
   }

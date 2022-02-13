@@ -10,19 +10,38 @@ import { MdAlbum } from "react-icons/md";
 import axios from "axios";
 
 export default class NaviguateBar extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     async login() {
         const res = await axios.get('/login');
         window.location.href = res.data;
     }
     async logout() {
-        console.log("Logout");
+        const res = await axios.get('/logout');
+        console.log("Logout"); 
+        localStorage.removeItem('token');
+        this.onTrigger();
+        window.location.href = res.data;
     }
+    onTrigger = () => {
+        this.props.logCallback(false);
+    }
+
     render() {
         var logo = require('../assets/LogoNavBar.png');
         var btn;
-        btn = (<button className="btn btn-success" onClick={this.login.bind(this)}>
+        if(!this.props.isLog){
+            btn = (<button className="btn btn-success" onClick={this.login.bind(this)}>
             <FaUserCircle className="mx-2" />Login
         </button>)
+        }
+        else{
+            btn = (<button className="btn btn-danger" onClick={this.logout.bind(this)}>
+            <FaUserCircle className="mx-2" />Logout
+        </button>)
+        }
+        
         return (
             <div>
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
