@@ -12,7 +12,7 @@ export default class AlbumsRanking extends React.Component {
         };
     }
     async componentDidMount() {
-        const response = await axios.get('/user/favoriteAlbums');
+        const response = await axios.get('/user/albums');
         const favAlbums = response.data;
         this.setState({ favAlbums: favAlbums });
         console.log(this.state.favAlbums);

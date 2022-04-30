@@ -11,7 +11,7 @@ export default class TracksRanking extends React.Component {
         };
     } 
     async componentDidMount() {
-        const response = await axios.get('/user/favoriteSongs');
+        const response = await axios.get('/user/tracks');
         const favSongs = response.data;
         this.setState({ favSongs: favSongs });
         console.log(this.state.favSongs)

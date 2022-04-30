@@ -12,7 +12,7 @@ export default class ArtistsRanking extends React.Component {
         };
     }
     async componentDidMount() {
-        const response = await axios.get('/user/favoriteArtists');
+        const response = await axios.get('/user/artists');
         const favArtists = response.data;
         this.setState({ favArtists: favArtists });
         console.log(this.state.favArtists);

@@ -32,7 +32,7 @@ export default class App extends React.Component {
         });
     }
     else{
-        const res = await axios.get('/getToken');
+        const res = await axios.get('/connected');
         if(res.data.token != undefined){
             console.log("NEW TOKEN FROM SERVER",res.data.token)
             var token = res.data.token;

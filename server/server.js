@@ -4,6 +4,8 @@ const axios = require('axios');
 var cors = require('cors');
 const session = require('express-session');
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+dotenv.config();
 
 app.use(session({
   secret: "sshshhshs",
@@ -14,13 +16,17 @@ app.use(cors())
 const port = process.env.PORT || 8000
 
 const datasConfig = require('./config.json');
+const { access } = require('fs');
 
-const APP_ID = datasConfig.appId;
-const REDIRECT_URI = datasConfig.redirectUri
-const PERMS = datasConfig.perms;
-const SECRET_KEY = datasConfig.secretKey;
+// const APP_ID = datasConfig.appId;
+// const REDIRECT_URI = datasConfig.redirectUri
+// const PERMS = datasConfig.perms;
+// const SECRET_KEY = datasConfig.secretKey;
+const APP_ID = process.env.APP_ID;
+const REDIRECT_URI = process.env.REDIRECT_URI
+const PERMS = process.env.PERMS;
+const SECRET_KEY = process.env.SECRET_KEY;
 var code = "";
-var accessToken = "";
 const baseUri = "https://api.deezer.com/";
 var history = [];
 
@@ -39,7 +45,7 @@ app.get('/logout', async (req, res) => {
   res.send("http://localhost:3000");
 })
 
-app.get('/getToken', (req,res) => {
+app.get('/connected', (req,res) => {
   if(req.session.tokenSession){
     res.json({ 
       token: req.session.tokenSession
@@ -52,11 +58,12 @@ app.get('/getToken', (req,res) => {
   }
   return
 })
-app.get('/getCode', async (req, res) => {
+app.get('/login/code', async (req, res) => {
   code = req.query.code;
   const response = await axios.get('https://connect.deezer.com/oauth/access_token.php?app_id=' + APP_ID + '&secret=' + SECRET_KEY + '&code=' + code);
   req.session.accessToken = response.data.split('=')[1].split('&')[0];
   accessToken = req.session.accessToken;
+  //console.log("Access token = ",accessToken);
   req.session.tokenSession = jwt.sign({ log: true},'RANDOM_TOKEN_SECRET',{ expiresIn: '24h' });
   res.redirect('http://localhost:3000');
 });
@@ -73,7 +80,7 @@ app.get('/user/history', async (req, res) => {
   }
 });
 
-app.get('/user/favoriteSongs', async (req, res) => {
+app.get('/user/tracks', async (req, res) => {
   try {
     const response = await axios.get(baseUri + "user/me/charts/tracks?access_token=" + req.session.accessToken);
     var favoriteSongs = response.data.data;
@@ -84,7 +91,7 @@ app.get('/user/favoriteSongs', async (req, res) => {
   }
 })
 
-app.get('/user/favoriteArtists', async (req, res) => {
+app.get('/user/artists', async (req, res) => {
   try {
     const response = await axios.get(baseUri + "user/me/charts/artists?access_token=" + req.session.accessToken);
     var favoriteArtists = response.data.data;
@@ -94,7 +101,7 @@ app.get('/user/favoriteArtists', async (req, res) => {
     console.error(err)
   }
 })
-app.get('/user/favoriteAlbums', async (req, res) => {
+app.get('/user/albums', async (req, res) => {
   try {
     const response = await axios.get(baseUri + "user/me/charts/albums?access_token=" + req.session.accessToken);
     var favoriteAlbums = response.data.data;
