@@ -112,8 +112,9 @@ app.get('/user/albums', async (req, res) => {
   }
 })
 
-app.get('/artist/:idArtist/topTracks', async (req, res) => {
+app.get('/artist/tracks/:idArtist', async (req, res) => {
   const idArtist = req.params.idArtist;
+  console.log("id artist = ", idArtist)
   try {
     const response = await axios.get(baseUri + "artist/" + idArtist + "/top?access_token=" + req.session.accessToken);
     var topTracks = response.data.data;
