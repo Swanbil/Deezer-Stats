@@ -48,7 +48,8 @@ app.get('/logout', async (req, res) => {
 app.get('/connected', (req,res) => {
   if(req.session.tokenSession){
     res.json({ 
-      token: req.session.tokenSession
+      token: req.session.tokenSession,
+      username : req.session.username
     })
   }
   else{
@@ -64,7 +65,10 @@ app.get('/login/code', async (req, res) => {
   req.session.accessToken = response.data.split('=')[1].split('&')[0];
   accessToken = req.session.accessToken;
   //console.log("Access token = ",accessToken);
+  var userInfos = await axios.get(baseUri + "user/me?access_token=" + req.session.accessToken);
+  userInfos = userInfos.data;
   req.session.tokenSession = jwt.sign({ log: true},'RANDOM_TOKEN_SECRET',{ expiresIn: '24h' });
+  req.session.username = userInfos.name;
   res.redirect('http://localhost:3000');
 });
 
@@ -112,18 +116,14 @@ app.get('/user/albums', async (req, res) => {
   }
 })
 
-app.get('/artist/tracks/:idArtist', async (req, res) => {
-  const idArtist = req.params.idArtist;
-  console.log("id artist = ", idArtist)
-  try {
-    const response = await axios.get(baseUri + "artist/" + idArtist + "/top?access_token=" + req.session.accessToken);
-    var topTracks = response.data.data;
-    res.json(topTracks);
-  }
-  catch (err) {
-    console.error(err)
-  }
+app.get('/feed/releases', async (req, res) => {
+  var response = await axios.get('https://rss.applemarketingtools.com/api/v2/fr/music/most-played/10/albums.json');
+  const albumsReleases = response.data.feed.results;
+  response = await axios.get('https://rss.applemarketingtools.com/api/v2/fr/music/most-played/10/songs.json');
+  const songsReleases = response.data.feed.results;
+  res.json({albums : albumsReleases, songs : songsReleases});
 })
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`)
 })

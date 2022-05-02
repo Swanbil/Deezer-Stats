@@ -19,26 +19,33 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLog: false
+      isLog: false,
+      username : ""
     };
   }
 
   async componentDidMount(){
     const currentToken = localStorage.getItem('token');
+    const currentUser = localStorage.getItem('username');
     if(currentToken !== null){
         const myDecodedToken = decodeToken(currentToken);
         this.setState({isLog:myDecodedToken.log}, () => {
             console.log("IF ALREADY REGISTER",this.state.isLog);
         });
+        this.setState({username:currentUser}, () => {
+      });
     }
     else{
         const res = await axios.get('/connected');
+        
         if(res.data.token != undefined){
             console.log("NEW TOKEN FROM SERVER",res.data.token)
             var token = res.data.token;
+            var username = res.data.username;
             localStorage.setItem('token',token);
+            localStorage.setItem('username',username);
             const myDecodedToken = decodeToken(token);
-            this.setState({isLog:myDecodedToken.log});
+            this.setState({isLog:myDecodedToken.log, username : username});
         }
     }
 }
@@ -50,13 +57,13 @@ handleCallback = (childData) =>{
     return (
       <Router>
         <div>
-          <NavBar isLog={this.state.isLog} logCallback = {this.handleCallback}/>
+          <NavBar isLog={this.state.isLog} logCallback = {this.handleCallback} username={this.state.username}/>
           <Routes >
-            <Route path="/"  element={<Home isLog={this.state.isLog} logCallback={this.handleCallback}/>} />
+            <Route path="/"  element={<Home isLog={this.state.isLog} logCallback={this.handleCallback} username={this.state.username}/> } />
             <Route path="/stats/tracks" element={<TracksRanking isLog={this.state.isLog}/>} />
             <Route path="/stats/artists" element={<ArtistsRanking isLog={this.state.isLog}/>}  />
             <Route path="/stats/albums" element={<AlbumsRanking isLog={this.state.isLog}/>}  />
-            <Route path="/feed" element={<Feed isLog={this.state.isLog} />}  />
+            <Route path="/feed" element={<Feed isLog={this.state.isLog} username={this.state.username}/>}  />
           </Routes>
           <Footer />
         </div>

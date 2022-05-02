@@ -4,8 +4,7 @@ import logoDark from "./assets/LogoBlack.png"
 import { FaNewspaper } from 'react-icons/fa';
 import { IoStatsChart } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
-import { decodeToken  } from "react-jwt";
-import axios from "axios";
+
 
 export default class Home extends React.Component {
     constructor(props){
