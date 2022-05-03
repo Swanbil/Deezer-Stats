@@ -14,8 +14,9 @@
     font-weight:600;
 }
 .logo{
-    width:180px;
-    height:50px;
+    background-color: whitesmoke;
+    padding:10px;
+    border-radius: 10px;
 }
 .sublink{
     text-decoration: none;

@@ -31,7 +31,7 @@ export default class Feed extends React.Component {
                     Feed
                 </h2>
 
-                <h4><MdAlbum className="mx-2" color={"#70d987"} />Albums releases</h4>
+                <h4><MdAlbum className="mx-2" color={"#70d987"} />Most played albums in France</h4>
                 <div id="albums-releases" className="container list-bubble" style={{ display: "flex", gap: "18px", flexWrap: "wrap", justifyContent: "flex-start" }}>
                     {this.state.isLoading
                         ?
@@ -53,7 +53,7 @@ export default class Feed extends React.Component {
 
                 </div>
 
-                <h4 style={{ marginTop: "25px" }}><BsFileEarmarkMusic className="mx-2" color={"#70d987"} />Songs releases</h4>
+                <h4 style={{ marginTop: "25px" }}><BsFileEarmarkMusic className="mx-2" color={"#70d987"} />Most played songs in France</h4>
                 <div id="songs-releases" className="container list-bubble" style={{ display: "flex", gap: "22px", flexWrap: "wrap", justifyContent: "flex-start" }}>
                     {this.state.isLoading
                         ?

@@ -5,6 +5,7 @@ import "../style/NavBar.css";
 import { FaUserCircle, FaHome, FaNewspaper } from 'react-icons/fa';
 import { IoStatsChart } from 'react-icons/io5';
 import { BsFileEarmarkMusic } from "react-icons/bs";
+import {ImStatsBars2} from "react-icons/im";
 import { BiUserVoice } from "react-icons/bi";
 import { MdAlbum } from "react-icons/md";
 import axios from "axios";
@@ -29,7 +30,7 @@ export default class NaviguateBar extends React.Component {
     }
 
     render() {
-        var logo = require('../assets/LogoNavBar.png');
+        //var logo = require('../assets/logo_black.png');
         var btn;
         if(!this.props.isLog){
             btn = (<button className="btn btn-success" onClick={this.login.bind(this)}>
@@ -46,7 +47,11 @@ export default class NaviguateBar extends React.Component {
             <div>
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                     <Container fluid>
-                        <Navbar.Brand><Link className="brand" to="/"><img className="logo" src={logo}></img></Link></Navbar.Brand>
+                        <Navbar.Brand className="logo">
+                            <Link className="brand" to="/" >
+                                <div style={{display:"flex",alignItems:"center", fontWeight:"bold", color:"rgb(142 219 159)"}}><ImStatsBars2 className="mx-2"></ImStatsBars2>DeezerStats</div>
+                            </Link>
+                        </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto">
