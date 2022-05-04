@@ -1,0 +1,29 @@
+
+.card-footer{
+    background-color: #f1f1f1;
+}
+.card-title{
+    color: rgb(112, 217, 135);
+}
+.card-text{
+    color:rgb(161, 161, 161);
+}
+.card-subtitle{
+    color: rgb(17, 17, 17);
+}
+#card{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+@media (max-width:767px) {
+   #img{
+        height:150px;
+        object-fit: scale-down;
+        
+   }
+   #card{
+       width:300px;
+   }
+   audio{
+       width:250px;
+   }
+}

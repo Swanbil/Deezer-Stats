@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const path = require("path");
 const app = express();
 const axios = require('axios');
 var cors = require('cors');
@@ -7,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
 
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.use(session({
   secret: "sshshhshs",
   resave: true,

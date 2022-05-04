@@ -1,0 +1,28 @@
+.link{
+    text-decoration: none;
+    font-weight:600;
+    color:#70d987;
+}
+.link:hover{
+    color:#4c8f5a;
+}
+.brand{
+    text-decoration: none;
+    color:goldenrod;
+}
+.log{
+    font-weight:600;
+}
+.logo{
+    background-color: whitesmoke;
+    padding:10px;
+    border-radius: 10px;
+}
+.sublink{
+    text-decoration: none;
+    font-weight:600;
+    color:whitesmoke;
+}
+div.dropdown-menu.show {
+    background-color: #212529; 
+}

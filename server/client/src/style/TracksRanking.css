@@ -1,0 +1,13 @@
+.tracks{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+#loading-spin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #70d987;
+    margin-top:150px;
+}

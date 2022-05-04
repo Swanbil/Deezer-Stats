@@ -1,0 +1,41 @@
+.overlay{
+    background-image: url('https://i.pinimg.com/originals/61/ea/3f/61ea3f40ecc0a22394dccd7926b02f4a.jpg');
+    background-attachment: scroll;
+	background-position: bottom center;
+	background-size: cover;
+    height:85vh;
+}
+.logoDark{
+    width:40%;
+}
+.services{
+    margin-top:60px;
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.service{
+    display:flex;
+    width: 250px;
+    height:250px;
+    padding:2%;
+    font-size: 14px;
+    background-color: whitesmoke;
+    box-shadow: 0 5px 15px black ;
+    border-radius:6px;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+.subtext{
+    font-style: italic;
+    font-weight:600;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 710px) {
+    .service{
+        width: 200px;
+        height:200px;
+    }
+  }
