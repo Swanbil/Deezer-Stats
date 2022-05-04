@@ -1,7 +1,0 @@
-{
-  "appId": "521902",
-  "redirectUri": "http://localhost:8000/login/code",
-  "perms": "basic_access,email,listening_history",
-  "secretKey": "e643e7a219f68c575e8f38370d493b27",
-  "accessToken": "frMQjZ7ja6mBsk8wTj1WBnIqg4RfqjVyPlgMPziWMMo6zmwDUy"
-}

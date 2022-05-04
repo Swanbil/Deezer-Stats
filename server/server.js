@@ -15,10 +15,8 @@ app.use(session({
   saveUninitialized: true
 }));
 app.use(cors())
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 8000;
 
-const datasConfig = require('./config.json');
-const { access } = require('fs');
 
 // const APP_ID = datasConfig.appId;
 // const REDIRECT_URI = datasConfig.redirectUri
@@ -28,6 +26,7 @@ const APP_ID = process.env.APP_ID;
 const REDIRECT_URI = process.env.REDIRECT_URI
 const PERMS = process.env.PERMS;
 const SECRET_KEY = process.env.SECRET_KEY;
+const BASE_URL = process.env.BASE_URL;
 var code = "";
 const baseUri = "https://api.deezer.com/";
 var history = [];
@@ -44,7 +43,7 @@ app.get('/login', async (req, res) => {
 
 app.get('/logout', async (req, res) => {
   req.session.destroy();
-  res.send("http://localhost:3000");
+  res.send(BASE_URL);
 })
 
 app.get('/connected', (req,res) => {
@@ -71,7 +70,7 @@ app.get('/login/code', async (req, res) => {
   userInfos = userInfos.data;
   req.session.tokenSession = jwt.sign({ log: true},'RANDOM_TOKEN_SECRET',{ expiresIn: '24h' });
   req.session.username = userInfos.name;
-  res.redirect('http://localhost:3000');
+  res.redirect(BASE_URL);
 });
 
 app.get('/user/history', async (req, res) => {
