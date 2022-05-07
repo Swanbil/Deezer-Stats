@@ -25,7 +25,7 @@ export default class Home extends React.Component {
                 </h2>
                 {welcomeTitle}
                 <section className="services">
-                    <div className=" mx-5 service">
+                    <div className="col-md-2 mx-5 service">
                         <IoStatsChart color={"#70d987"} size={56} />
                         <h4 className="my-2 text-dark">Statistiques</h4>
                         <div className="subtext text-secondary text-center">
@@ -33,7 +33,7 @@ export default class Home extends React.Component {
                         </div>
                         <Link to="/stats/tracks"><button className='btn my-1 text-light' style={{ backgroundColor: "#70d987" }}>Discover</button></Link>
                     </div>
-                    <div className="mx-5 service">
+                    <div className="col-md-2 mx-5 service">
                         <FaNewspaper color={"#70d987"} size={56} />
                         <h4 className="my-2 text-dark">Feed</h4>
                         <div className="subtext text-secondary text-center">

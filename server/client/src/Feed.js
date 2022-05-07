@@ -32,7 +32,7 @@ export default class Feed extends React.Component {
                 </h2>
 
                 <h4><MdAlbum className="mx-2" color={"#70d987"} />Most played albums in France</h4>
-                <div id="albums-releases" className="container list-bubble" style={{ display: "flex", gap: "18px", flexWrap: "wrap", justifyContent: "flex-start" }}>
+                <div id="albums-releases" className="container list-bubble" style={{  }}>
                     {this.state.isLoading
                         ?
                         (<Spinner id="loading-spin" animation="border" role="status">
@@ -41,7 +41,7 @@ export default class Feed extends React.Component {
                         :
                         this.state.albumsReleases.map((album) => {
                             return (
-                                <div className="buble-item" style={{ display: "flex", flexDirection: "column", alignItems: "center" }} key={album.id}>
+                                <div className="buble-item col-sm-2" style={{  }} key={album.id}>
                                     <div><img src={album.artworkUrl100} style={{ borderRadius: "10px" }}></img></div>
                                     <div style={{ fontSize: "16px", fontWeight: "bold", color: "#70d987" }}>{album.name}</div>
                                     <div style={{ fontSize: "14px", fontWeight: "bold" }}>{album.artistName}</div>
@@ -54,7 +54,7 @@ export default class Feed extends React.Component {
                 </div>
 
                 <h4 style={{ marginTop: "25px" }}><BsFileEarmarkMusic className="mx-2" color={"#70d987"} />Most played songs in France</h4>
-                <div id="songs-releases" className="container list-bubble" style={{ display: "flex", gap: "22px", flexWrap: "wrap", justifyContent: "flex-start" }}>
+                <div id="songs-releases" className="container list-bubble" style={{  }}>
                     {this.state.isLoading
                         ?
                         (<Spinner id="loading-spin" animation="border" role="status" >
@@ -63,7 +63,7 @@ export default class Feed extends React.Component {
                         :
                         this.state.songsReleases.map((song) => {
                             return (
-                                <div className="buble-item" style={{ display: "flex", flexDirection: "column", alignItems: "center" }} key={song.id}>
+                                <div className="buble-item col-sm-2" style={{  }} key={song.id}>
                                     <div><img src={song.artworkUrl100} style={{ borderRadius: "10px" }}></img></div>
                                     <div style={{ fontSize: "16px", fontWeight: "bold", color: "#70d987" }}>{song.name}</div>
                                     <div style={{ fontSize: "14px", fontWeight: "bold" }}>{song.artistName}</div>
